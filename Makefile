@@ -3,7 +3,7 @@ APP=game.pdx
 SRC=source
 
 $(APP): $(SRC)
-	$(PC) $^ $(APP)
+	$(PC) $(SRC) $(APP)
 	rm source/images/*.aseprite
 
 .PHONY: clean
