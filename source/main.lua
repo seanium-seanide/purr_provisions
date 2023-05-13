@@ -2,6 +2,7 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
+import "CoreLibs/object"
 
 local gfx <const> = playdate.graphics
 local playerSprite = nil
@@ -29,6 +30,8 @@ function init()
   end
   gfx.sprite.setBackgroundDrawingCallback(drawBackgroundCallback)
   --]]
+
+  -- MyClass = class('PeePee').extends(Object)
 end
 
 init()
