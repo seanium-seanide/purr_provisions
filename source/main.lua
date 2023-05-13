@@ -3,11 +3,21 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 import "CoreLibs/object"
+import "Player"
 
-local gfx <const> = playdate.graphics
-local playerSprite = nil
+local pd <const> = playdate
+local gfx <const> = pd.graphics
+
+-----
 
 function init()
+  local playerUpImage = gfx.image.new("images/playerUp")
+  local playerDownImage = gfx.image.new("images/playerDown")
+  local playerLeftImage = gfx.image.new("images/playerLeft")
+  local playerRightImage = gfx.image.new("images/playerRight")
+
+  player = Player(playerUpImage, playerDownImage, playerLeftImage, playerRightImage)
+
   --[[
   -- Load images
   
@@ -54,6 +64,8 @@ function playdate.update()
       playerSprite:moveBy( -2, 0 )
   end
   --]]
+
+  player:update()
 
   -- Update sprite
   gfx.sprite.update()
