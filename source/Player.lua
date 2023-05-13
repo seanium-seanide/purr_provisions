@@ -46,7 +46,22 @@ function Player:update()
 
     self.sprite:moveTo(x, y)
   elseif pd.buttonJustReleased(pd.kButtonLeft) then
+    local x, y = self.sprite:getPosition()
+
+    x //= 32
+    x *= 32
+    x -= 16
+
+    self.sprite:moveTo(x, y)
   elseif pd.buttonJustReleased(pd.kButtonRight) then
+    local x, y = self.sprite:getPosition()
+
+    x //= 32
+    x += 1
+    x *= 32
+    x += 16
+
+    self.sprite:moveTo(x, y)
   end
 
 end
