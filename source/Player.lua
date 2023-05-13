@@ -9,7 +9,7 @@ function Player:init(upImage, downImage, leftImage, rightImage)
   self.images = {upImage, downImage, leftImage, rightImage}
 
   self.sprite = gfx.sprite.new(self.images[1])
-  self.sprite:moveTo(200, 120)
+  self.sprite:moveTo(16, 16)
   self.sprite:add()
 end
 
@@ -27,4 +27,26 @@ function Player:update()
     self.sprite:setImage(self.images[4])
     self.sprite:moveBy(2, 0)
   end
+
+  if pd.buttonJustReleased(pd.kButtonUp) then
+    local x, y = self.sprite:getPosition()
+
+    y //= 32
+    y *= 32
+    y -= 16
+
+    self.sprite:moveTo(x, y)
+  elseif pd.buttonJustReleased(pd.kButtonDown) then
+    local x, y = self.sprite:getPosition()
+
+    y //= 32
+    y += 1
+    y *= 32
+    y += 16
+
+    self.sprite:moveTo(x, y)
+  elseif pd.buttonJustReleased(pd.kButtonLeft) then
+  elseif pd.buttonJustReleased(pd.kButtonRight) then
+  end
+
 end
