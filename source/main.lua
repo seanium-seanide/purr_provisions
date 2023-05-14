@@ -33,7 +33,9 @@ init()
 
 function playdate.update()
   player:update()
-  gfx.sprite.update()
 
+  --print(player.sprite.x)
+
+  gfx.sprite.update()
   pd.timer.updateTimers()
 end

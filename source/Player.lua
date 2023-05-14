@@ -13,25 +13,55 @@ function Player:init(upImage, downImage, leftImage, rightImage)
   self.sprite:add()
 end
 
+direction = 'up'
+
 function Player:update()
-  if pd.buttonIsPressed(pd.kButtonUp) then
+  --direction = nil
+
+  -- Set sprite
+
+  if pd.buttonJustPressed(pd.kButtonUp) then
+    direction = 'up'
     self.sprite:setImage(self.images[1])
-    self.sprite:moveBy(0, -2)
-  elseif pd.buttonIsPressed(pd.kButtonDown) then
+  elseif pd.buttonJustPressed(pd.kButtonDown) then
+    direction = 'down'
     self.sprite:setImage(self.images[2])
-    self.sprite:moveBy(0, 2)
-  elseif pd.buttonIsPressed(pd.kButtonLeft) then
+  elseif pd.buttonJustPressed(pd.kButtonLeft) then
+    direction = 'left'
     self.sprite:setImage(self.images[3])
-    self.sprite:moveBy(-2, 0)
-  elseif pd.buttonIsPressed(pd.kButtonRight) then
+  elseif pd.buttonJustPressed(pd.kButtonRight) then
+    direction = 'right'
     self.sprite:setImage(self.images[4])
-    self.sprite:moveBy(2, 0)
   end
+
+  -- Button press
+
+  if pd.buttonIsPressed(pd.kButtonUp) then
+    if direction == 'up' then
+      self.sprite:moveBy(0, -2)
+    end
+  elseif pd.buttonIsPressed(pd.kButtonDown) then
+    if direction == 'down' then
+      self.sprite:moveBy(0, 2)
+    end
+  elseif pd.buttonIsPressed(pd.kButtonLeft) then
+    if direction == 'left' then
+      self.sprite:moveBy(-2, 0)
+    end
+  elseif pd.buttonIsPressed(pd.kButtonRight) then
+    if direction == 'right' then
+      self.sprite:moveBy(2, 0)
+    end
+  end
+
+  -- Button release
 
   if pd.buttonJustReleased(pd.kButtonUp) then
     local x, y = self.sprite:getPosition()
 
+    y -= 16
     y //= 32
+    y += 1
     y *= 32
     y -= 16
 
@@ -39,6 +69,7 @@ function Player:update()
   elseif pd.buttonJustReleased(pd.kButtonDown) then
     local x, y = self.sprite:getPosition()
 
+    y -= 16
     y //= 32
     y += 1
     y *= 32
@@ -48,7 +79,9 @@ function Player:update()
   elseif pd.buttonJustReleased(pd.kButtonLeft) then
     local x, y = self.sprite:getPosition()
 
+    x -= 16
     x //= 32
+    x += 1
     x *= 32
     x -= 16
 
@@ -56,6 +89,7 @@ function Player:update()
   elseif pd.buttonJustReleased(pd.kButtonRight) then
     local x, y = self.sprite:getPosition()
 
+    x -= 16
     x //= 32
     x += 1
     x *= 32
@@ -63,5 +97,4 @@ function Player:update()
 
     self.sprite:moveTo(x, y)
   end
-
 end
